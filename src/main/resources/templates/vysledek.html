@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:text-align="http://www.w3.org/1999/xhtml" lang="cs"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="My lovely web page"/>
+    <meta name="robots" content="index, follow"/>
+    <meta name="keywords" content="java, web"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Kočka nebo pes?</title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i|Raleway:400,400i,700,700i&amp;subset=latin-ext"
+          rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="${'css/bootstrap.min.css'}"/>
+
+    <link rel="shortcut icon" href="../static/images/dog_ico" type="image/x-icon" th:href="${'images/dog_ico'}"/>
+</head>
+
+<body>
+
+<div th:insert="fragments/menu :: menu">menu</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <br>
+        <h2>Výsledek testu</h2>
+        <br>
+        <!--/*@thymesVar id="kockaPes" type="java.lang.String"*/-->
+
+        <div th:each="jednaOdpoved : ${zaver}">
+            <th:block th:switch="${jednaOdpoved.status}">
+                <div th:case="'CORRECT'">
+                    <div class="form-group has-success">
+                        <input type="text" value="correct value" th:value="${jednaOdpoved.getOdpoved()}"
+                               class="form-control is-valid">
+                        <div class="valid-feedback">Správně</div>
+                    </div>
+                </div>
+                <div th:case="'WRONG'">
+                    <div class="form-group has-danger">
+                        <input type="text" value="wrong value" th:value="${jednaOdpoved.getOdpoved()}"
+                               class="form-control is-invalid">
+                        <div class="invalid-feedback">Špatně, správná odpověď byla <span
+                                th:text="${jednaOdpoved.getSpravna_odpoved()}">velryba</span></div>
+                    </div>
+                </div>
+            </th:block>
+
+        </div>
+
+        <footer class="paticka">
+            <br>
+            <div>
+                <p th:insert="fragments/footer :: footer">Footer</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+
+
