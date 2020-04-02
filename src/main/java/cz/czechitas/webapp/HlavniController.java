@@ -63,22 +63,21 @@ public class HlavniController {
         List<String> seznamOdpovedi = new ArrayList<>();
         for (String item : vstup.getObrazek()) {
             seznamOdpovedi.add(item);
-            System.out.println(item);
         }
+
         List<Hodnoceni> konecnyVysledek = new ArrayList<>();
+        //hranaté závorky se používají pouze u polí, u listů je to .get(index)
 
-        //hranaté závorky se používají pouzeu polí, u listů je to .get(index)
-
-        for (int j=0; j < souboryKockyPsi.size(); j++) {
-            System.out.println(seznamOdpovedi.get(j));
-            System.out.println(souboryKockyPsi.get(j).getZvire());
+        for (int j = 0; j < souboryKockyPsi.size(); j++) {
+            System.out.println("tisknu odpověď ze seznamu seznamOdpovedi: " + seznamOdpovedi.get(j));
+            System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
             if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
-
-             konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
-         }
-         else  {
-             konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
-         }
+                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
+            } else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
+                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
+            } else {
+                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
+            }
 
             System.out.println(konecnyVysledek);
         }

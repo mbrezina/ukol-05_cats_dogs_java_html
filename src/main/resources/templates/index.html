@@ -42,6 +42,8 @@
                 <label class="custom-radio">Pes</label></input>
                 <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="pes">
 
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" checked="">
+
                 <br><br>
             </div>
             <input type="submit" id="tlacitko" class="btn btn-info" value="Odeslat formulář">
