@@ -23,6 +23,7 @@ import static java.util.Arrays.*;
 @Controller
 public class HlavniController {
     private List<fotkaZvirete> souboryKockyPsi;
+    int pocitadlo = 0;
 
     public String urciZvire(String nazevSouboru) {
         String regex = "pes_.*";
@@ -44,7 +45,7 @@ public class HlavniController {
         for (Resource cesta : cestyKSouborum) {
             String druhZvirete = urciZvire(cesta.getFilename());
             System.out.println(druhZvirete);
-            souboryKockyPsi.add(new fotkaZvirete(cesta.getFilename(), druhZvirete, "checked=\"\"", "", ""));
+            souboryKockyPsi.add(new fotkaZvirete(cesta.getFilename(), druhZvirete, true, false, false));
             System.out.println(cesta.getFilename());
         }
         Collections.shuffle(souboryKockyPsi);
@@ -59,7 +60,7 @@ public class HlavniController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public ModelAndView zpracujIndex(IndexForm vstup) {
-        ModelAndView data = new ModelAndView("vysledek");
+
         List<String> seznamOdpovedi = new ArrayList<>();
         for (String item : vstup.getObrazek()) {
             seznamOdpovedi.add(item);
@@ -69,21 +70,43 @@ public class HlavniController {
         //hranaté závorky se používají pouze u polí, u listů je to .get(index)
 
         for (int j = 0; j < souboryKockyPsi.size(); j++) {
+
             System.out.println("tisknu odpověď ze seznamu seznamOdpovedi: " + seznamOdpovedi.get(j));
             System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
-            if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
-                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
 
-            } else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
+            if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
+                pocitadlo++;
+
             } else {
-                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
+                souboryKockyPsi.get(j).setZaskrtnuto_nic(false);
+                if (seznamOdpovedi.get(j).equals("kocka")) {
+                    souboryKockyPsi.get(j).setZaskrtnuta_kocka(true);
+                } else {
+                    souboryKockyPsi.get(j).setZaskrtnut_pes(true);
+                }
+
+                if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
+                    konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
+                } else {
+                    konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
+                }
+                System.out.println(konecnyVysledek);
             }
 
-            System.out.println(konecnyVysledek);
+        }
+        if (pocitadlo > 0) {
+            ModelAndView oprava = new ModelAndView("redirect:/");
+            oprava.addObject("seznamFotekKocekPsu", souboryKockyPsi);
+            
+            oprava.addObject("oprava_nutna", "Nezadali jste všechny odpovědi, zkuste to znovu");
+            return oprava;
+        } else {
+            ModelAndView data = new ModelAndView("vysledek");
+            data.addObject("zaver", konecnyVysledek);
+            return data;
         }
 
-        data.addObject("zaver", konecnyVysledek);
-        return data;
     }
 }
+

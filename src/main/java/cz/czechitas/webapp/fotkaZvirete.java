@@ -3,27 +3,27 @@ package cz.czechitas.webapp;
 public class fotkaZvirete {
     private String nazevSouboru;
     private String zvire;
-    private String zaskrtnuto_nic;
-    private String zaskrtnut_pes;
-    private String zaskrtnuta_kocka;
+    private Boolean zaskrtnuto_nic;
+    private Boolean zaskrtnut_pes;
+    private Boolean zaskrtnuta_kocka;
 
-    public void setZaskrtnut_pes(String zaskrtnut_pes) {
+    public void setZaskrtnut_pes(Boolean zaskrtnut_pes) {
         this.zaskrtnut_pes = zaskrtnut_pes;
     }
 
-    public void setZaskrtnuta_kocka(String zaskrtnuta_kocka) {
+    public void setZaskrtnuta_kocka(Boolean zaskrtnuta_kocka) {
         this.zaskrtnuta_kocka = zaskrtnuta_kocka;
     }
 
-    public String getZaskrtnut_pes() {
+    public Boolean getZaskrtnut_pes() {
         return zaskrtnut_pes;
     }
 
-    public String getZaskrtnuta_kocka() {
+    public Boolean getZaskrtnuta_kocka() {
         return zaskrtnuta_kocka;
     }
 
-    public fotkaZvirete(String nazevSouboru, String zvire, String zaskrtnuto_nic, String zaskrtnut_pes, String zaskrtnuta_kocka) {
+    public fotkaZvirete(String nazevSouboru, String zvire, Boolean zaskrtnuto_nic, Boolean zaskrtnut_pes, Boolean zaskrtnuta_kocka) {
         this.nazevSouboru = nazevSouboru;
         this.zvire = zvire;
         this.zaskrtnuto_nic = zaskrtnuto_nic;
@@ -38,7 +38,7 @@ public class fotkaZvirete {
     public String getZvire() {
         return zvire;
     }
-    public String getZaskrtnuto_nic() {
+    public Boolean getZaskrtnuto_nic() {
         return zaskrtnuto_nic;
     }
 
@@ -48,7 +48,7 @@ public class fotkaZvirete {
     public void setZvire(String zvire) {
         this.zvire = zvire;
     }
-    public void setZaskrtnuto_nic(String zaskrtnuto_nic) {
+    public void setZaskrtnuto_nic(Boolean zaskrtnuto_nic) {
         this.zaskrtnuto_nic = zaskrtnuto_nic;
     }
 

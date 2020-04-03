@@ -26,23 +26,29 @@
         <br>
         <h2>Kočka není pes</h2>
         <br>
-<p>
-    Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
+        <p>
+            Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
+        <span th:text="${oprava_nutna}">Tady je text</span>
+        </p>
+        <!--/*@thymesVar id="oprava_nutna" type="java.lang.String"*/-->
 
-</p>
+
         <form method="post">
             <div th:each="jmenoObrazku : ${seznamFotekKocekPsu}">
                 <img src="../static/images/animals/kocka_1.jpg"
                      th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
                      class="obrazek_kocka_pes" alt="zviřátko"/>
                 <label class="custom-radio">Kočka</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="kočka" th:field="${jmenoObrazku.getZaskrtnuta_kocka()}" >
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="kočka"
+                       th:checked="${jmenoObrazku.getZaskrtnuta_kocka()}">
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="pes" th:field="${jmenoObrazku.getZaskrtnut_pes()}">
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="pes"
+                       th:checked="${jmenoObrazku.getZaskrtnut_pes()}">
 
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" th:field="${jmenoObrazku.getZaskrtnuto_nic()}">
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="zadna_odpoved"
+                       id="default_value_button" th:checked="${jmenoObrazku.getZaskrtnuto_nic()}">
 
                 <br><br>
             </div>
