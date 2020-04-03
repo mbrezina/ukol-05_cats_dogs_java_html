@@ -44,7 +44,7 @@ public class HlavniController {
         for (Resource cesta : cestyKSouborum) {
             String druhZvirete = urciZvire(cesta.getFilename());
             System.out.println(druhZvirete);
-            souboryKockyPsi.add(new fotkaZvirete(cesta.getFilename(), druhZvirete));
+            souboryKockyPsi.add(new fotkaZvirete(cesta.getFilename(), druhZvirete, "checked=\"\"", "", ""));
             System.out.println(cesta.getFilename());
         }
         Collections.shuffle(souboryKockyPsi);
@@ -73,6 +73,7 @@ public class HlavniController {
             System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
             if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
+
             } else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
             } else {

@@ -36,13 +36,13 @@
                      th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
                      class="obrazek_kocka_pes" alt="zviřátko"/>
                 <label class="custom-radio">Kočka</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="kočka">
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="kočka" th:field="${jmenoObrazku.getZaskrtnuta_kocka()}" >
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="pes">
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="pes" th:field="${jmenoObrazku.getZaskrtnut_pes()}">
 
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" checked="">
+                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" th:field="${jmenoObrazku.getZaskrtnuto_nic()}">
 
                 <br><br>
             </div>
