@@ -4,8 +4,9 @@ import javax.validation.constraints.Pattern;
 import java.util.List;
 
 public class IndexForm {
-    @Pattern(regexp = "zadna_odpoved", message = "není vyplněná odpověď")
-    private List<String> obrazek;
+    //@Pattern(regexp = "(pes||kocka)*", message = "není vyplněná odpověď")
+    //private List<String> obrazek;
+    private List<@Pattern(regexp= "(pes||kocka)*", message = "není vyplněná odpověď") String> obrazek;
 
     public List<String> getObrazek() {
         return obrazek;
