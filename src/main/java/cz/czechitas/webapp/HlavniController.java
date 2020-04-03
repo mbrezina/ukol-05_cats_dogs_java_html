@@ -4,9 +4,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.*;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -51,14 +55,23 @@ public class HlavniController {
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView zobrazIndex() {
+    public ModelAndView zobrazIndex(ModelMap predvyplnenyDrzakNaData) {
+        predvyplnenyDrzakNaData.putIfAbsent("formular", new IndexForm());
         ModelAndView data = new ModelAndView("index");
         data.addObject("seznamFotekKocekPsu", souboryKockyPsi);
         return data;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public ModelAndView zpracujIndex(IndexForm vstup) {
+    public ModelAndView zpracujIndex(@Valid @ModelAttribute("formular") IndexForm vstup,
+                                     BindingResult validacniChyby,
+                                     RedirectAttributes flashScope) {
+        if (validacniChyby.hasErrors()) {
+            ModelAndView data = new ModelAndView("redirect:/index.html");
+            flashScope.addFlashAttribute("formular", vstup);
+            flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
+
+        }
         ModelAndView data = new ModelAndView("vysledek");
         List<String> seznamOdpovedi = new ArrayList<>();
         for (String item : vstup.getObrazek()) {
@@ -73,8 +86,8 @@ public class HlavniController {
             System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
             if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
-            } else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
-                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
+            //} else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
+            //    konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
             } else {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
             }
