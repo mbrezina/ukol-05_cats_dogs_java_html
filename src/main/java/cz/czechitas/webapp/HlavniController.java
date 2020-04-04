@@ -56,7 +56,8 @@ public class HlavniController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView zobrazIndex(ModelMap predvyplnenyDrzakNaData) {
-        predvyplnenyDrzakNaData.putIfAbsent("formular", new IndexForm());
+        //predvyplnenyDrzakNaData.putIfAbsent("formular", new IndexForm());
+        //ModelAndView data = new ModelAndView("index", predvyplnenyDrzakNaData);
         ModelAndView data = new ModelAndView("index");
         data.addObject("seznamFotekKocekPsu", souboryKockyPsi);
         return data;
@@ -67,11 +68,12 @@ public class HlavniController {
                                      BindingResult validacniChyby,
                                      RedirectAttributes flashScope) {
         if (validacniChyby.hasErrors()) {
-            ModelAndView data = new ModelAndView("redirect:/");
+            ModelAndView formular = new ModelAndView("redirect:/");
             flashScope.addFlashAttribute("formular", vstup);
             flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
-
+            return formular;
         }
+
         ModelAndView data = new ModelAndView("vysledek");
         List<String> seznamOdpovedi = new ArrayList<>();
         for (String item : vstup.getObrazek()) {
@@ -86,8 +88,8 @@ public class HlavniController {
             System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
             if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
-            //} else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
-            //    konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
+            } else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
+                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
             } else {
                 konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
             }
