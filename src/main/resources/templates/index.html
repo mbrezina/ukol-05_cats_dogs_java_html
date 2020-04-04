@@ -30,18 +30,20 @@
     Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
 </p>
         <form method="post">
-            <div th:each="jmenoObrazku : ${seznamFotekKocekPsu}">
+            <div th:each="jmenoObrazku, iter : ${seznamFotekKocekPsu}">
                 <img src="../static/images/animals/kocka_1.jpg"
                      th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
                      class="obrazek_kocka_pes" alt="zviřátko"/>
+                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" checked="checked">
+
                 <label class="custom-radio">Kočka</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="kočka">
+                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="kočka" th:checked="${formular.obrazek?.get(iter.index)=='kočka'}">
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="pes">
+                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="pes" th:checked="${formular.obrazek?.get(iter.index)=='pes'}">
 
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.count-1)} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" checked="">
+                <span th:if="${#vars.getVariable(T(org.springframework.validation.BindingResult).MODEL_KEY_PREFIX+'formular')?.hasFieldErrors('obrazek[' + iter.index + ']')}">Nevyplneno</span>
 
                 <br><br>
             </div>
