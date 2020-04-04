@@ -68,10 +68,10 @@ public class HlavniController {
                                      BindingResult validacniChyby,
                                      RedirectAttributes flashScope) {
         if (validacniChyby.hasErrors()) {
-            ModelAndView formular = new ModelAndView("redirect:/");
+            ModelAndView data = new ModelAndView("redirect:/");
             flashScope.addFlashAttribute("formular", vstup);
             flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
-            return formular;
+            return data;
         }
 
         ModelAndView data = new ModelAndView("vysledek");
