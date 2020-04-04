@@ -37,6 +37,7 @@
                                class="form-control is-valid">
                         <div class="valid-feedback">Správně</div>
                     </div>
+                    <br>
                 </div>
                 <div th:case="'WRONG'">
                     <div class="form-group has-danger">
@@ -45,6 +46,7 @@
                         <div class="invalid-feedback">Špatně, správná odpověď byla <span
                                 th:text="${jednaOdpoved.getSpravna_odpoved()}">velryba</span></div>
                     </div>
+                    <br>
                 </div>
                 <div th:case="'NO_ANSWER'">
                     <div class="form-group">

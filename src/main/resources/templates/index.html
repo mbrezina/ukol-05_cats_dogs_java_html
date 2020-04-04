@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="${'css/bootstrap.min.css'}"/>
 
     <link rel="shortcut icon" href="../static/images/dog_ico" type="image/x-icon" th:href="${'images/dog_ico'}"/>
+
 </head>
 
 <body>
 
 <div th:insert="fragments/menu :: menu">menu</div>
-
+<!--/*@thymesVar id="oprava_nutna" type="java.lang.String"*/-->
 <div class="container">
     <div class="jumbotron">
         <br>
@@ -28,9 +29,9 @@
         <br>
         <p>
             Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
-        <span th:text="${oprava_nutna}">Tady je text</span>
+            <span th:text="${oprava_nutna}">Tady je text</span>
+            
         </p>
-        <!--/*@thymesVar id="oprava_nutna" type="java.lang.String"*/-->
 
 
         <form method="post">

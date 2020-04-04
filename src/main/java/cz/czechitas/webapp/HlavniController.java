@@ -98,9 +98,9 @@ public class HlavniController {
         if (pocitadlo > 0) {
             ModelAndView oprava = new ModelAndView("redirect:/");
             oprava.addObject("seznamFotekKocekPsu", souboryKockyPsi);
-            
             oprava.addObject("oprava_nutna", "Nezadali jste všechny odpovědi, zkuste to znovu");
             return oprava;
+
         } else {
             ModelAndView data = new ModelAndView("vysledek");
             data.addObject("zaver", konecnyVysledek);
