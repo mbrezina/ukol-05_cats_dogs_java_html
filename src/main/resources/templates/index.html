@@ -31,7 +31,7 @@
             Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
 
         </p>
-        <p th:text="${oprava_nutna}">Tady je text</p>
+        <p class="text-danger" th:text="${oprava_nutna}">Tady je text</p>
 
 
         <form method="post">
@@ -46,7 +46,7 @@
                 <label class="custom-radio" th:id="'obrazek[' + ${(iter.index)} + ']'">Kočka</label></input>
 
                 <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka"
-                       th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='kočka'}">
+                      th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='kočka'}">
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
