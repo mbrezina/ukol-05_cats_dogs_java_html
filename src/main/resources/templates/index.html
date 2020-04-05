@@ -29,27 +29,31 @@
         <br>
         <p>
             Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
-            <span th:text="${oprava_nutna}">Tady je text</span>
-            
+
         </p>
+        <p th:text="${oprava_nutna}">Tady je text</p>
 
 
         <form method="post">
-            <div th:each="jmenoObrazku : ${seznamFotekKocekPsu}">
+            <div th:each="jmenoObrazku, iter : ${seznamFotekKocekPsu}">
                 <img src="../static/images/animals/kocka_1.jpg"
                      th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
                      class="obrazek_kocka_pes" alt="zviřátko"/>
+
+                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="zadna_odpoved"
+                       id="default_value_button" th:checked="${jmenoObrazku.getZaskrtnuto_nic()}">
+
                 <label class="custom-radio">Kočka</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="kočka"
-                       th:checked="${jmenoObrazku.getZaskrtnuta_kocka()}">
+                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka">
+                       <!--th:checked="${zadaneOdpovedi.get(iter.index)=='kočka'}">-->
+
+
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="pes"
+                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="pes"
                        th:checked="${jmenoObrazku.getZaskrtnut_pes()}">
 
-                <input th:name="'obrazek[' + ${(jmenoObrazkuStat.index)} + ']'" type="radio" value="zadna_odpoved"
-                       id="default_value_button" th:checked="${jmenoObrazku.getZaskrtnuto_nic()}">
 
                 <br><br>
             </div>
