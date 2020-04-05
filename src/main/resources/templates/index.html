@@ -44,10 +44,9 @@
                        id="default_value_button" th:checked="${jmenoObrazku.getZaskrtnuto_nic()}">
 
                 <label class="custom-radio">Kočka</label></input>
-                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka">
-                       <!--th:checked="${zadaneOdpovedi.get(iter.index)=='kočka'}">-->
 
-
+                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka"
+                       th:checked="${zadaneOdpovedi.get(iter.index)=='kočka'}">
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
