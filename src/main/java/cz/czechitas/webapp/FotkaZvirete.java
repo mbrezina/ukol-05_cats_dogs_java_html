@@ -1,19 +1,19 @@
 package cz.czechitas.webapp;
 
-public class fotkaZvirete {
+public class FotkaZvirete {
     private String nazevSouboru;
     private String zvire;
-    private Boolean zaskrtnuto_nic;
+    private Boolean zaskrtnuto_nic = true;
     private Boolean zaskrtnut_pes;
     private Boolean zaskrtnuta_kocka;
 
-    public void setZaskrtnut_pes(Boolean zaskrtnut_pes) {
-        this.zaskrtnut_pes = zaskrtnut_pes;
-    }
+    //public void setZaskrtnut_pes(Boolean zaskrtnut_pes) {
+    //    this.zaskrtnut_pes = zaskrtnut_pes;
+    //}
 
-    public void setZaskrtnuta_kocka(Boolean zaskrtnuta_kocka) {
-        this.zaskrtnuta_kocka = zaskrtnuta_kocka;
-    }
+    //public void setZaskrtnuta_kocka(Boolean zaskrtnuta_kocka) {
+    //    this.zaskrtnuta_kocka = zaskrtnuta_kocka;
+    //}
 
     public Boolean getZaskrtnut_pes() {
         return zaskrtnut_pes;
@@ -23,7 +23,7 @@ public class fotkaZvirete {
         return zaskrtnuta_kocka;
     }
 
-    public fotkaZvirete(String nazevSouboru, String zvire, Boolean zaskrtnuto_nic, Boolean zaskrtnut_pes, Boolean zaskrtnuta_kocka) {
+    public FotkaZvirete(String nazevSouboru, String zvire, Boolean zaskrtnuto_nic, Boolean zaskrtnut_pes, Boolean zaskrtnuta_kocka) {
         this.nazevSouboru = nazevSouboru;
         this.zvire = zvire;
         this.zaskrtnuto_nic = zaskrtnuto_nic;
@@ -42,14 +42,14 @@ public class fotkaZvirete {
         return zaskrtnuto_nic;
     }
 
-    public void setNazevSouboru(String nazevSouboru) {
-        this.nazevSouboru = nazevSouboru;
-    }
-    public void setZvire(String zvire) {
-        this.zvire = zvire;
-    }
-    public void setZaskrtnuto_nic(Boolean zaskrtnuto_nic) {
-        this.zaskrtnuto_nic = zaskrtnuto_nic;
-    }
+    //public void setNazevSouboru(String nazevSouboru) {
+    //    this.nazevSouboru = nazevSouboru;
+    //}
+    //public void setZvire(String zvire) {
+    //    this.zvire = zvire;
+    //}
+    //public void setZaskrtnuto_nic(Boolean zaskrtnuto_nic) {
+    //    this.zaskrtnuto_nic = zaskrtnuto_nic;
+    //}
 
 }

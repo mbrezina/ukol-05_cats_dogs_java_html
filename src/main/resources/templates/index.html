@@ -41,9 +41,9 @@
                      class="obrazek_kocka_pes" alt="zviřátko"/>
 
                 <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="zadna_odpoved"
-                       id="default_value_button" th:checked="${jmenoObrazku.getZaskrtnuto_nic()}">
+                       id="default_value_button" checked="">
 
-                <label class="custom-radio">Kočka</label></input>
+                <label class="custom-radio" th:id="'obrazek[' + ${(iter.index)} + ']'">Kočka</label></input>
 
                 <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka"
                        th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='kočka'}">
