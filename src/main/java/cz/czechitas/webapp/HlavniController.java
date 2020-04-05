@@ -11,18 +11,11 @@ import org.springframework.web.servlet.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Array;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static java.util.Arrays.*;
 
 @Controller
 public class HlavniController {
@@ -44,7 +37,6 @@ public class HlavniController {
         List<Resource> cestyKSouborum = Arrays.asList(prohledavacSlozek.getResources("classpath:/static/images/animals/*"));
 
         souboryKockyPsi = new ArrayList<>(cestyKSouborum.size());
-        //přidávám objekty fotka zvířete do seznamu:
         for (Resource cesta : cestyKSouborum) {
             String druhZvirete = urciZvire(cesta.getFilename());
             System.out.println(druhZvirete);
@@ -57,7 +49,6 @@ public class HlavniController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView zobrazIndex(ModelMap predvyplnenyDrzakNaData) {
         predvyplnenyDrzakNaData.putIfAbsent("formular", new IndexForm());
-        //ModelAndView data = new ModelAndView("index", predvyplnenyDrzakNaData);
         ModelAndView data = new ModelAndView("index");
         data.addObject("seznamFotekKocekPsu", souboryKockyPsi);
         return data;
@@ -74,10 +65,6 @@ public class HlavniController {
             return data;
         }
 
-        <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="pes" th:checked="${formular.obrazek?.get(iter.index)=='pes'}">
-
-
-
         ModelAndView data = new ModelAndView("vysledek");
         List<String> seznamOdpovedi = new ArrayList<>();
         for (String item : vstup.getObrazek()) {
@@ -85,8 +72,6 @@ public class HlavniController {
         }
 
         List<Hodnoceni> konecnyVysledek = new ArrayList<>();
-        //hranaté závorky se používají pouze u polí, u listů je to .get(index)
-
         for (int j = 0; j < souboryKockyPsi.size(); j++) {
             System.out.println("tisknu odpověď ze seznamu seznamOdpovedi: " + seznamOdpovedi.get(j));
             System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
