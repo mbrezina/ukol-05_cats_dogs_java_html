@@ -7,6 +7,6 @@ Cílem bylo udělat dynamickou webovou aplikaci, která si načte fotky z adres�
 Úkol má 3 verze na 3 větvích GitHubu:
 - master - základní řešení - i když nejsou vyplněné všechny otázky, uživatel se dostane dál a při vyhodnocení je u dané otázky napsáno, že otázka nebyla zodpovězena
 - větev form_validation - tam je validace vstupu a obnovení zadaných odpovědí přes @Pattern, RedirectAttributes, uživatel se nedostane dál dokud nevyplní všechny odpovědi
-- větev simple_validation - řešení validace zadaných odpovědí je postavené na logice, práci s objekty, seznamy a systémem šablon Thymeleaf
+- větev simple_validation - řešení validace zadaných odpovědí a jejich obnovení po neúspěšném odeslání je postavené na logice, práci s objekty, seznamy a systémem šablon Thymeleaf
 
 
