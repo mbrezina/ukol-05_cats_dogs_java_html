@@ -46,12 +46,12 @@
                 <label class="custom-radio">Kočka</label></input>
 
                 <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka"
-                       th:checked="${zadaneOdpovedi.get(iter.index)=='kočka'}">
+                       th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='kočka'}">
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
                 <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="pes"
-                       th:checked="${jmenoObrazku.getZaskrtnut_pes()}">
+                       th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='pes'}">
 
 
                 <br><br>
