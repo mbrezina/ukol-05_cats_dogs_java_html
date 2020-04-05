@@ -56,7 +56,7 @@ public class HlavniController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView zobrazIndex(ModelMap predvyplnenyDrzakNaData) {
-        //predvyplnenyDrzakNaData.putIfAbsent("formular", new IndexForm());
+        predvyplnenyDrzakNaData.putIfAbsent("formular", new IndexForm());
         //ModelAndView data = new ModelAndView("index", predvyplnenyDrzakNaData);
         ModelAndView data = new ModelAndView("index");
         data.addObject("seznamFotekKocekPsu", souboryKockyPsi);

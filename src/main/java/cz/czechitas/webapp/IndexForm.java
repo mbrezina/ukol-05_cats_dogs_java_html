@@ -5,7 +5,7 @@ import java.util.List;
 
 public class IndexForm {
 
-    private List<@Pattern(regexp = "(pes||kočka)*", message = "není vyplněná odpověď") String> obrazek;
+    private List<@Pattern(regexp = "(pes|kočka)") String> obrazek;
 
     public List<String> getObrazek() {
         return obrazek;
