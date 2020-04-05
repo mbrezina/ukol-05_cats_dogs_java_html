@@ -26,23 +26,29 @@
         <br>
         <h2>Kočka není pes</h2>
         <br>
-<p>
-    Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
-</p>
+        <p>
+            Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
+        </p>
+
+        <p class="text-danger" th:text="${oprava_nutna}">Tady je text</p>
+
         <form method="post">
             <div th:each="jmenoObrazku, iter : ${seznamFotekKocekPsu}">
                 <img src="../static/images/animals/kocka_1.jpg"
                      th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
                      class="obrazek_kocka_pes" alt="zviřátko"/>
-                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="zadna_odpoved" id="default_value_button" checked="checked">
+                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="zadna_odpoved"
+                       id="default_value_button" checked="checked">
 
                 <label class="custom-radio">Kočka</label></input>
-                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="kočka" th:checked="${formular.obrazek?.get(iter.index)=='kočka'}">
+                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="kočka"
+                       th:checked="${formular.obrazek?.get(iter.index)=='kočka'}">
 
                 <br>
                 <label class="custom-radio">Pes</label></input>
-                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="pes" th:checked="${formular.obrazek?.get(iter.index)=='pes'}">
-                
+                <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="pes"
+                       th:checked="${formular.obrazek?.get(iter.index)=='pes'}">
+
                 <br><br>
             </div>
             <input type="submit" id="tlacitko" class="btn btn-info" value="Odeslat formulář">

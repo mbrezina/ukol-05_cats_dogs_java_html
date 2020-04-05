@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 
 @Controller
 public class HlavniController {
-    private List<fotkaZvirete> souboryKockyPsi;
+    private List<FotkaZvirete> souboryKockyPsi;
 
     public String urciZvire(String nazevSouboru) {
         String regex = "pes_.*";
@@ -40,7 +40,7 @@ public class HlavniController {
         for (Resource cesta : cestyKSouborum) {
             String druhZvirete = urciZvire(cesta.getFilename());
             System.out.println(druhZvirete);
-            souboryKockyPsi.add(new fotkaZvirete(cesta.getFilename(), druhZvirete));
+            souboryKockyPsi.add(new FotkaZvirete(cesta.getFilename(), druhZvirete));
             System.out.println(cesta.getFilename());
         }
         Collections.shuffle(souboryKockyPsi);
@@ -62,30 +62,22 @@ public class HlavniController {
             ModelAndView data = new ModelAndView("redirect:/");
             flashScope.addFlashAttribute("formular", vstup);
             flashScope.addFlashAttribute(BindingResult.MODEL_KEY_PREFIX + "formular", validacniChyby);
+            flashScope.addFlashAttribute("oprava_nutna", "Nezadali jste všechny odpovědi, doplňte to.");
             return data;
         }
 
         ModelAndView data = new ModelAndView("vysledek");
-        List<String> seznamOdpovedi = new ArrayList<>();
-        for (String item : vstup.getObrazek()) {
-            seznamOdpovedi.add(item);
-        }
-
         List<Hodnoceni> konecnyVysledek = new ArrayList<>();
         for (int j = 0; j < souboryKockyPsi.size(); j++) {
-            System.out.println("tisknu odpověď ze seznamu seznamOdpovedi: " + seznamOdpovedi.get(j));
-            System.out.println("jaké má být správné zvíře: " + souboryKockyPsi.get(j).getZvire());
-            if (seznamOdpovedi.get(j).equals(souboryKockyPsi.get(j).getZvire())) {
-                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
-            } else if (seznamOdpovedi.get(j).equals("zadna_odpoved")) {
-                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
+            if (vstup.getObrazek().get(j).equals(souboryKockyPsi.get(j).getZvire())) {
+                konecnyVysledek.add(new Hodnoceni(vstup.getObrazek().get(j), souboryKockyPsi.get(j).getZvire(), "CORRECT"));
+            } else if (vstup.getObrazek().get(j).equals("zadna_odpoved")) {
+                konecnyVysledek.add(new Hodnoceni(vstup.getObrazek().get(j), souboryKockyPsi.get(j).getZvire(), "NO_ANSWER"));
             } else {
-                konecnyVysledek.add(new Hodnoceni(seznamOdpovedi.get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
+                konecnyVysledek.add(new Hodnoceni(vstup.getObrazek().get(j), souboryKockyPsi.get(j).getZvire(), "WRONG"));
             }
-
             System.out.println(konecnyVysledek);
         }
-
         data.addObject("zaver", konecnyVysledek);
         return data;
     }

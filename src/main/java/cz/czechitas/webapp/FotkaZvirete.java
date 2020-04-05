@@ -1,10 +1,10 @@
 package cz.czechitas.webapp;
 
-public class fotkaZvirete {
+public class FotkaZvirete {
     private String nazevSouboru;
     private String zvire;
 
-    public fotkaZvirete(String nazevSouboru, String zvire) {
+    public FotkaZvirete(String nazevSouboru, String zvire) {
         this.nazevSouboru = nazevSouboru;
         this.zvire = zvire;
     }
