@@ -74,6 +74,10 @@ public class HlavniController {
             return data;
         }
 
+        <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="pes" th:checked="${formular.obrazek?.get(iter.index)=='pes'}">
+
+
+
         ModelAndView data = new ModelAndView("vysledek");
         List<String> seznamOdpovedi = new ArrayList<>();
         for (String item : vstup.getObrazek()) {

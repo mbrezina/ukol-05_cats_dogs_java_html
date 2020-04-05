@@ -43,7 +43,7 @@
                 <label class="custom-radio">Pes</label></input>
                 <input th:name="'obrazek[' + ${iter.index} + ']'" type="radio" value="pes" th:checked="${formular.obrazek?.get(iter.index)=='pes'}">
 
-                <span th:if="${#vars.getVariable(T(org.springframework.validation.BindingResult).MODEL_KEY_PREFIX+'formular')?.hasFieldErrors('obrazek[' + iter.index + ']')}">Nevyplneno</span>
+                <!--<span th:if="${#vars.getVariable(T(org.springframework.validation.BindingResult).MODEL_KEY_PREFIX+'formular')?.hasFieldErrors('obrazek[' + iter.index + ']')}">Nevyplněno</span>-->
 
                 <br><br>
             </div>
