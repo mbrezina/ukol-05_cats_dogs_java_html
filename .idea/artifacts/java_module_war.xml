@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="ukol04.war">
+    <root id="archive" name="ukol05.war">
       <element id="artifact" artifact-name="java-module:war exploded" />
     </root>
   </artifact>

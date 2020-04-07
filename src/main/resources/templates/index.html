@@ -18,56 +18,57 @@
 
 </head>
 
-<body>
+<div>
 
-<div th:insert="fragments/menu :: menu">menu</div>
-<!--/*@thymesVar id="oprava_nutna" type="java.lang.String"*/-->
-<div class="container">
-    <div class="jumbotron">
-        <br>
-        <h2>Kočka není pes</h2>
-        <br>
-        <p>
-            Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
+    <div th:insert="fragments/menu :: menu">menu</div>
+    <!--/*@thymesVar id="oprava_nutna" type="java.lang.String"*/-->
+    <div class="container">
+        <div class="jumbotron">
+            <br>
+            <h2>Kočka není pes</h2>
+            <br>
+            <p>
+                Je na obrázku kočka nebo pes? Vyberte si, odešlete formulář tlačítkem a dostanete vyhodnocení.
 
-        </p>
-        <p class="text-danger" th:text="${oprava_nutna}">Tady je text</p>
-
-
-        <form method="post">
-            <div th:each="jmenoObrazku, iter : ${seznamFotekKocekPsu}">
-                <img src="../static/images/animals/kocka_1.jpg"
-                     th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
-                     class="obrazek_kocka_pes" alt="zviřátko"/>
-
-                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="zadna_odpoved"
-                       id="default_value_button" checked="">
-
-                <label class="custom-radio" th:id="'obrazek[' + ${(iter.index)} + ']'">Kočka</label></input>
-
-                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka"
-                      th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='kočka'}">
-
-                <br>
-                <label class="custom-radio">Pes</label></input>
-                <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="pes"
-                       th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='pes'}">
+            </p>
+            <p class="text-danger" th:text="${oprava_nutna}">Tady je text</p>
 
 
-                <br><br>
-            </div>
-            <input type="submit" id="tlacitko" class="btn btn-info" value="Odeslat formulář">
-        </form>
+            <form method="post">
+                <div th:each="jmenoObrazku, iter : ${seznamFotekKocekPsu}">
+                    <img src="../static/images/animals/kocka_1.jpg"
+                         th:src="@{'/images/animals/' + ${jmenoObrazku.getNazevSouboru()}}"
+                         class="obrazek_kocka_pes" alt="zviřátko"/>
 
-    </div>
+                    <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="zadna_odpoved"
+                           id="default_value_button" checked="">
 
-    <footer class="paticka">
-        <br>
-        <div>
-            <p th:insert="fragments/footer :: footer">Footer</p>
+                    <label class="custom-radio" th:id="'obrazek[' + ${(iter.index)} + ']'">Kočka</label></input>
+
+                    <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="kočka"
+                           th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='kočka'}">
+
+                    <br>
+                    <label class="custom-radio">Pes</label></input>
+                    <input th:name="'obrazek[' + ${(iter.index)} + ']'" type="radio" value="pes"
+                           th:checked="${zadaneOdpovedi!=null && zadaneOdpovedi.get(iter.index)=='pes'}">
+
+
+                    <br><br>
+                </div>
+                <input type="submit" id="tlacitko" class="btn btn-info" value="Odeslat formulář">
+            </form>
+
         </div>
 
-    </footer>
+        <footer class="paticka">
+
+            <div>
+                <p th:insert="fragments/footer :: footer">Footer</p>
+            </div>
+
+        </footer>
+    </div>
 </div>
 </body>
 </html>

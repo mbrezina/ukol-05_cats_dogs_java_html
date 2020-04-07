@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 public class HlavniController {
     private List<FotkaZvirete> souboryKockyPsi;
     int pocitadlo = 0;
+    public static final ArrayList<ArrayList<String>> FOTKYZVIRAT = new ArrayList<ArrayList<String>>();
 
     public String urciZvire(String nazevSouboru) {
         String regex = "pes_.*";
@@ -32,9 +33,17 @@ public class HlavniController {
         ResourcePatternResolver prohledavacSlozek = new PathMatchingResourcePatternResolver();
         List<Resource> cestyKSouborum = Arrays.asList(prohledavacSlozek.getResources("classpath:/static/images/animals/*"));
         souboryKockyPsi = new ArrayList<>(cestyKSouborum.size());
+
+        ArrayList<ArrayList<String>> listOLists = new ArrayList<ArrayList<String>>();
+        ArrayList<String> singleList = new ArrayList<String>();
+        singleList.add("hello");
+        singleList.add("world");
+        listOLists.add(singleList);
+
         for (Resource cesta : cestyKSouborum) {
             String druhZvirete = urciZvire(cesta.getFilename());
             System.out.println(druhZvirete);
+
             souboryKockyPsi.add(new FotkaZvirete(cesta.getFilename(), druhZvirete));
             System.out.println(cesta.getFilename());
         }

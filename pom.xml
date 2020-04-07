@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>cz.czechitas.java2</groupId>
-    <artifactId>ukol04</artifactId>
+    <artifactId>ukol05</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
-    <name>ukol04</name>
+    <name>ukol05</name>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -53,12 +53,23 @@
     </dependencies>
 
     <build>
-        <finalName>ukol04</finalName>
+        <finalName>ukol05</finalName>
 
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.stackify.Application</mainClass>
+                            <outputDirectory>${project.basedir}/docker</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

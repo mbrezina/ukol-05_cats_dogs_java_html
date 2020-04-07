@@ -33,18 +33,18 @@
             <th:block th:switch="${jednaOdpoved.status}">
                 <div th:case="'CORRECT'">
                     <div class="form-group has-success">
-                        <input type="text" value="correct value" th:value="${jednaOdpoved.getOdpoved()}"
-                               class="form-control is-valid">
+                        <input type="text" value="correct value" th:value="${jednaOdpoved.odpoved}"
+                               class="form-control is-valid" disabled="">
                         <div class="valid-feedback">Správně</div>
                     </div>
                     <br>
                 </div>
                 <div th:case="'WRONG'">
                     <div class="form-group has-danger">
-                        <input type="text" value="wrong value" th:value="${jednaOdpoved.getOdpoved()}"
-                               class="form-control is-invalid">
+                        <input type="text" value="wrong value" th:value="${jednaOdpoved.odpoved}"
+                               class="form-control is-invalid" disabled="">
                         <div class="invalid-feedback">Špatně, správná odpověď byla <span
-                                th:text="${jednaOdpoved.getSpravna_odpoved()}">velryba</span></div>
+                                th:text="${jednaOdpoved.spravna_odpoved}">velryba</span></div>
                     </div>
                     <br>
                 </div>
